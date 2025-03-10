@@ -19,9 +19,9 @@ async function updateContent(countryArray) {
     const neighborsImages = await getNeighbourImages(countryArray.neighbours);
     neighbourHTML = "";
     for (let i = 0; i < countryArray.neighbours.length; i++) {
-      neighbourHTML += ` <img src="${neighborsImages[i]}" alt="${countryArray.neighbours[i]}'s Flag" width="50"/>
-                          <p>${countryArray.neighbours[i]}</p>
-                       `;
+      neighbourHTML += `
+      <p>${countryArray.neighbours[i]}</p>
+      <img src="${neighborsImages[i]}" alt="${countryArray.neighbours[i]}'s Flag" width="50"/> `;
     }
   }
 
@@ -59,6 +59,7 @@ async function getCountryArr() {
         flag: countryStuff.flags.png,
         neighbours: await getNeighbourNames(countryStuff.borders),
       };
+      console.log(countryArray.name);
       await updateContent(countryArray);
     })
     .catch((error) => {
@@ -86,6 +87,7 @@ async function getNeighbourNames(neighbours) {
         console.log(error);
       });
   }
+  console.log(neighbourNames);
   return neighbourNames;
 }
 
